@@ -7,7 +7,7 @@ exports.up = function (knex) {
     .createTable("recipes", (table) => {
       table.increments("recipeId");
       table.string("recipeName", 64).unique().notNullable();
-      table.timestamps({ useCamelCase: true });
+      table.timestamps("registration_date").defaultTo(knex.fn.now());
     })
     .createTable("steps", (table) => {
       table.increments();
